@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>header</title>
+</head>
+<body>
+<div class="navbar navbar-inverse navbar-fixed-top" th:fragment="header">
+    <ul class="nav navbar-nav">
+        <li th:classappend="${module == 'home' ? 'active' : ''}">
+            <a href="#" th:href="@{project_edit}">Home</a>
+        </li>
+        <li th:classappend="${module == 'project' ? 'active' : ''}">
+            <a href="#" th:href="@{project_show}">Projects</a>
+        </li>
+    </ul>
+</div>
+</body>
+</html>
