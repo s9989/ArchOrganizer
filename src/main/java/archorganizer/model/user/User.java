@@ -1,4 +1,4 @@
-package archorganizer.model;
+package archorganizer.model.user;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;

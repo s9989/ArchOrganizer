@@ -1,7 +1,7 @@
 package archorganizer;
 
-import archorganizer.model.Expert;
-import archorganizer.model.User;
+import archorganizer.model.user.Expert;
+import archorganizer.model.user.User;
 import archorganizer.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
