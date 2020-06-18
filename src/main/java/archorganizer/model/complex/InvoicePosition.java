@@ -1,5 +1,8 @@
 package archorganizer.model.complex;
 
+import javax.persistence.Embeddable;
+
+@Embeddable
 public class InvoicePosition {
 
     private Long number;

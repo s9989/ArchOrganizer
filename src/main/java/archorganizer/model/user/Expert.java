@@ -1,16 +1,21 @@
 package archorganizer.model.user;
 
+import archorganizer.model.relations.Implementation;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 public class Expert {
 
-    final public static String SPECIALISATION_SANITATION   = "Sieci sanitarne";
-    final public static String SPECIALISATION_GREEN        = "Tereny zielone";
+    final public static String SPECIALISATION_SANITATION   = "Instalacje sanitarne";
+    final public static String SPECIALISATION_GREEN        = "Architektura krajobrazu";
     final public static String SPECIALISATION_FIRE         = "Systemy przeciwpożarowe";
-    final public static String SPECIALISATION_CONSTRUCTION = "Konstruktor";
-    final public static String SPECIALISATION_ELECTRICITY  = "Sieci elektryczne";
+    final public static String SPECIALISATION_CONSTRUCTION = "Konstrukcja";
+    final public static String SPECIALISATION_ELECTRICITY  = "Instalacje elektryczne";
+    final public static String SPECIALISATION_ROADS        = "Drogi";
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -26,12 +31,23 @@ public class Expert {
     @NotBlank
     private String specialisation;
 
+    @OneToMany(mappedBy = "expert", cascade = {CascadeType.ALL})
+    private Set<Implementation> implementations = new HashSet<>();
+
     public Expert() {
     }
 
     public Expert(@NotBlank String companyName, @NotBlank String specialisation) {
         setCompanyName(companyName);
         setSpecialisation(specialisation);
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public User getUser() {

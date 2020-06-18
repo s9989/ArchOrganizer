@@ -14,8 +14,20 @@ public class Elaboration extends Document {
 
     private String content;
 
-    @Override
-    public String generate() {
-        return ""; // @todo
+    public Long getId() {
+        return id;
     }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
 }

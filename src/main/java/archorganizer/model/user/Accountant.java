@@ -1,7 +1,11 @@
 package archorganizer.model.user;
 
+import archorganizer.model.document.Invoice;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 public class Accountant {
@@ -17,10 +21,21 @@ public class Accountant {
     @NotBlank
     private String entitlementNumber;
 
+    @OneToMany(mappedBy = "accountant", cascade = {CascadeType.ALL})
+    private Set<Invoice> invoices = new HashSet<>();
+
     public Accountant() {}
 
     public Accountant(@NotBlank String entitlementNumber) {
         setEntitlementNumber(entitlementNumber);
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public User getUser() {

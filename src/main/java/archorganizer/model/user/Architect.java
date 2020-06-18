@@ -1,7 +1,12 @@
 package archorganizer.model.user;
 
+import archorganizer.model.project.Project;
+import archorganizer.model.relations.Management;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 public class Architect {
@@ -16,6 +21,9 @@ public class Architect {
 
     @NotBlank
     private String diploma;
+
+    @OneToMany(mappedBy = "project", cascade = {CascadeType.ALL}, orphanRemoval = true)
+    public Set<Management> managements = new HashSet<>();
 
     public Architect() {}
 
@@ -45,5 +53,12 @@ public class Architect {
 
     public void setDiploma(String diploma) {
         this.diploma = diploma;
+    }
+
+    public void addProject(Project project)
+    {
+        Management management = new Management(this, project);
+        this.managements.add(management);
+        project.managements.add(management);
     }
 }

@@ -1,7 +1,11 @@
 package archorganizer.model.user;
 
+import archorganizer.model.relations.Summary;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 public class Investor {
@@ -20,11 +24,22 @@ public class Investor {
     @NotBlank
     private String contact;
 
+    @OneToMany(mappedBy = "investor", cascade = {CascadeType.ALL})
+    private Set<Summary> summaries = new HashSet<>();
+
     public Investor() {}
 
     public Investor(@NotBlank String companyName, @NotBlank String contact) {
         setCompanyName(companyName);
         setContact(contact);
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public User getUser() {

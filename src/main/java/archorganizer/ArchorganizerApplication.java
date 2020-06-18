@@ -25,7 +25,7 @@ public class ArchorganizerApplication {
 
 	public static void main(String[] args) {
 		ConfigurableApplicationContext context = SpringApplication.run(ArchorganizerApplication.class, args);
-		context.getBean(DataInitializer.class).initData();
+		context.getBean(DataInitializer.class).initialize();
 	}
 
 	@GetMapping("/hello")

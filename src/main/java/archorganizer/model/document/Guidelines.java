@@ -1,6 +1,7 @@
 package archorganizer.model.document;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -10,7 +11,12 @@ public class Guidelines extends Document{
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    private List<String> guidelines;
+    @ElementCollection
+    @CollectionTable(
+            name="guidelines",
+            joinColumns=@JoinColumn(name="document_id")
+    )
+    private List<String> guidelines = new ArrayList<>();;
 
     public Long getId() {
         return id;
@@ -24,17 +30,7 @@ public class Guidelines extends Document{
         this.guidelines.add(guideline);
     }
 
-    @ElementCollection
-    @CollectionTable(
-            name="guidelines",
-            joinColumns=@JoinColumn(name="document_id")
-    )
     public List<String> getGuidelines() {
         return guidelines;
-    }
-
-    @Override
-    public String generate() {
-        return ""; // @todo
     }
 }

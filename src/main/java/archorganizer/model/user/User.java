@@ -64,6 +64,22 @@ public class User {
         this.accountant.setUser(this);
     }
 
+    public Architect getArchitect() {
+        return this.architect;
+    }
+
+    public Expert getExpert() {
+        return this.expert;
+    }
+
+    public Investor getInvestor() {
+        return this.investor;
+    }
+
+    public Accountant getAccountant() {
+        return this.accountant;
+    }
+
     public Long getId() {
         return id;
     }

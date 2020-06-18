@@ -1,10 +1,12 @@
 package archorganizer.model.document;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import java.util.Date;
+import archorganizer.model.document.state.Archived;
+import archorganizer.model.document.state.Draft;
+import archorganizer.model.document.state.Processing;
+import archorganizer.model.project.Stage;
+
+import javax.persistence.*;
+import java.time.LocalDate;
 
 @Entity
 abstract public class Document {
@@ -13,11 +15,77 @@ abstract public class Document {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    private Date createdDate;
+    private LocalDate createdDate;
 
-    private Date modifiedDate;
+    private LocalDate modifiedDate;
 
     private String number;
 
-    abstract public String generate();
+    private String documentName;
+
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH})
+    @JoinColumn(name = "stage_id", nullable = false)
+    private Stage stage;
+
+    @OneToOne(cascade = {CascadeType.ALL})
+    private Draft draft;
+
+    @OneToOne(cascade = {CascadeType.ALL})
+    private Processing processing;
+
+    @OneToOne(cascade = {CascadeType.ALL})
+    private Archived archived;
+
+    public Document() {
+        this.draft = new Draft(this);
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public LocalDate getCreatedDate() {
+        return createdDate;
+    }
+
+    public LocalDate getModifiedDate() {
+        return modifiedDate;
+    }
+
+    public String getNumber() {
+        return number;
+    }
+
+    public void setNumber(String number) {
+        this.number = number;
+    }
+
+    public String getDocumentName() {
+        return documentName;
+    }
+
+    public void setDocumentName(String documentName) {
+        this.documentName = documentName;
+    }
+
+    public void process() throws Exception {
+        if (this.draft == null) {
+            throw new Exception("Can't process not-draft document");
+        }
+        this.draft = null;
+        this.processing = new Processing(this);
+    }
+
+    public void archive() throws Exception {
+        if (this.processing == null) {
+            throw new Exception("Can't archive not-processed document");
+        }
+        this.processing = null;
+        this.archived = new Archived(this);
+    }
+
 }
