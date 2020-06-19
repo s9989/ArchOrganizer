@@ -23,11 +23,19 @@ public class Network extends Document {
     @OneToOne(mappedBy = "network", cascade = {CascadeType.ALL})
     private Attachment attachment;
 
-    public Network(@NotBlank String type) {
-        this(type, STATUS_NEW);
+    public Network() {}
+
+    public Network(@NotBlank Attachment attachment, @NotBlank String documentName) {
+        super(documentName);
+        this.attachment = attachment;
     }
 
-    public Network(@NotBlank String type, @NotBlank String status) {
+    public Network(@NotBlank Attachment attachment, @NotBlank String documentName, @NotBlank String type) {
+        this(attachment, documentName, type, STATUS_NEW);
+    }
+
+    public Network(@NotBlank Attachment attachment, @NotBlank String documentName, @NotBlank String type, @NotBlank String status) {
+        this(attachment, documentName);
         setType(type);
         setStatus(status);
     }

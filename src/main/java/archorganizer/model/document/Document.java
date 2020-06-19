@@ -24,7 +24,7 @@ abstract public class Document {
     private String documentName;
 
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH})
-    @JoinColumn(name = "stage_id", nullable = false)
+    @JoinColumn(name = "stage_id", nullable = true)
     private Stage stage;
 
     @OneToOne(cascade = {CascadeType.ALL})
@@ -38,6 +38,11 @@ abstract public class Document {
 
     public Document() {
         this.draft = new Draft(this);
+    }
+
+    public Document(String documentName) {
+        this();
+        this.documentName = documentName;
     }
 
     public Long getId() {
@@ -86,6 +91,10 @@ abstract public class Document {
         }
         this.processing = null;
         this.archived = new Archived(this);
+    }
+
+    public void setStage(Stage stage) {
+        this.stage = stage;
     }
 
 }

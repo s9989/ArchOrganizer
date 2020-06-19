@@ -49,7 +49,7 @@ public class Invoice extends Document {
     private List<InvoicePosition> positions;
 
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH})
-    @JoinColumn(name = "accountant_id", nullable = false)
+    @JoinColumn(name = "accountant_id")
     private Accountant accountant;
 
     public Long getId() {

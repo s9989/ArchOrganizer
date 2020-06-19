@@ -25,6 +25,8 @@ public class Management {
     @JoinColumn(name = "project_id", nullable = false)
     private Project project;
 
+    public Management() {}
+
     public Management(Architect architect, Project project) {
         this.architect = architect;
         this.project = project;

@@ -15,7 +15,7 @@ public class Standard extends Document {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Embedded
+    @Embedded()
     private ColorSet colorSet;
 
     private double budget;
@@ -30,12 +30,20 @@ public class Standard extends Document {
     @OneToOne(cascade = {CascadeType.ALL})
     private Attachment attachment;
 
-    public Standard(@NotBlank double budget) {
-        setBudget(budget);
+    public Standard() {}
+
+    public Standard(@NotBlank Attachment attachment, @NotBlank String documentName) {
+        super(documentName);
+        this.attachment = attachment;
     }
 
-    public Standard(@NotBlank double budget, @NotBlank ColorSet colorSet) {
-        this(budget);
+    public Standard(@NotBlank Attachment attachment, @NotBlank String documentName, @NotBlank double budget) {
+        this(attachment, documentName, budget, new ColorSet());
+    }
+
+    public Standard(@NotBlank Attachment attachment, @NotBlank String documentName, @NotBlank double budget, @NotBlank ColorSet colorSet) {
+        this(attachment, documentName);
+        setBudget(budget);
         setColorSet(colorSet);
     }
 

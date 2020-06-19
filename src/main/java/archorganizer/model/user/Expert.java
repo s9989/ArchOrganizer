@@ -32,7 +32,7 @@ public class Expert {
     private String specialisation;
 
     @OneToMany(mappedBy = "expert", cascade = {CascadeType.ALL})
-    private Set<Implementation> implementations = new HashSet<>();
+    public Set<Implementation> implementations = new HashSet<>();
 
     public Expert() {
     }

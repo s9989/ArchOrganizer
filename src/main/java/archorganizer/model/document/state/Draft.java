@@ -14,6 +14,8 @@ public class Draft {
     @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH})
     private Document document;
 
+    public Draft() {}
+
     public Draft(Document document) {
         this.document = document;
     }

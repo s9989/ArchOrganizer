@@ -1,5 +1,8 @@
 package archorganizer.model.project;
 
+import archorganizer.model.user.Expert;
+import org.hibernate.jdbc.Expectation;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -20,6 +23,8 @@ public class Execution extends Stage {
     )
     private List<String> details = new ArrayList<>();
 
+    public Execution() {}
+
     public Execution(Project project) {
         super(project);
     }
@@ -39,10 +44,17 @@ public class Execution extends Stage {
         this.details = details;
     }
 
+    @Override
+    public String getType() {
+        return Stage.TYPE_EXECUTION;
+    }
+
+    @Override
     public Long getId() {
         return id;
     }
 
+    @Override
     public void setId(Long id) {
         this.id = id;
     }

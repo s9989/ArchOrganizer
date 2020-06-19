@@ -1,8 +1,10 @@
 package archorganizer.model.project;
 
 import archorganizer.model.document.Document;
+import archorganizer.model.document.Guidelines;
 import archorganizer.model.relations.Implementation;
 import archorganizer.model.relations.Summary;
+import archorganizer.model.user.Expert;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -11,7 +13,11 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-public class Stage {
+abstract public class Stage {
+
+    static final public String TYPE_CONCEPT = "Koncepcja";
+    static final public String TYPE_BUILDING = "Projekt budowlany";
+    static final public String TYPE_EXECUTION = "Projekt wykonawczy";
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -36,7 +42,7 @@ public class Stage {
     protected Project project;
 
     @OneToMany(mappedBy = "stage", cascade = {CascadeType.ALL})
-    protected Set<Implementation> implementations = new HashSet<>();
+    public Set<Implementation> implementations = new HashSet<>();
 
     @OneToMany(mappedBy = "stage", cascade = {CascadeType.ALL})
     protected Set<Material> materials = new HashSet<>();
@@ -48,10 +54,14 @@ public class Stage {
     @OneToMany(mappedBy = "stage", cascade = {CascadeType.ALL})
     protected Set<Document> documents = new HashSet<>();
 
+    public Stage() {}
+
     public Stage(Project project) {
         this.project = project;
         this.startDate = LocalDate.now();
     }
+
+    abstract public String getType();
 
     public Long getId() {
         return id;
@@ -81,7 +91,19 @@ public class Stage {
         return budget;
     }
 
+    public void addExpert(Expert expert)
+    {
+        Implementation implementation = new Implementation(expert, this);
+        this.implementations.add(implementation);
+        expert.implementations.add(implementation);
+    }
+
     public void setBudget(double budget) {
         this.budget = budget;
+    }
+
+    public void addGuidelines(Guidelines guidelines) {
+        guidelines.setStage(this);
+        this.documents.add(guidelines);
     }
 }

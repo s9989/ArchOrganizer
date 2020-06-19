@@ -18,6 +18,12 @@ public class Guidelines extends Document{
     )
     private List<String> guidelines = new ArrayList<>();;
 
+    public Guidelines() {}
+
+    public Guidelines(String documentName) {
+        super(documentName);
+    }
+
     public Long getId() {
         return id;
     }

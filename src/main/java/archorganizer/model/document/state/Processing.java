@@ -15,6 +15,8 @@ public class Processing {
     @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH})
     private Document document;
 
+    public Processing() {}
+
     public Processing(Document document) {
         this.document = document;
     }

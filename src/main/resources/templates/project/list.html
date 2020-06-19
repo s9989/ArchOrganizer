@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head th:replace="common/template :: head">
+</head>
+<body>
+<div class="wrapper">
+    <div class="header" th:replace="common/template :: header">
+    </div>
+    <div class="body">
+        <h2>Projekty</h2>
+        <ul class="elements projects" th:each="project: ${projects}">
+            <li>
+                <a class="main" href="#" th:href="@{'/project/show?id=' + ${project.id}}"  th:text="${project.projectName}">name</a>
+                <a class="delete" href="#">Usuń</a>
+            </li>
+        </ul>
+        <ul class="elements">
+            <li class="new">
+                <a class="main" href="#">+ Nowy projekt</a>
+            </li>
+        </ul>
+    </div>
+    <div class="footer" th:replace="common/template :: footer">
+    </div>
+</div>
+</body>
+</html>

@@ -1,5 +1,6 @@
 package archorganizer.model.complex;
 
+import javax.persistence.Column;
 import javax.persistence.Embeddable;
 
 @Embeddable
@@ -7,9 +8,18 @@ public class ColorSet {
 
     private String name;
 
+    @Column(columnDefinition = "integer default 0")
     private int red;
+
+    @Column(columnDefinition = "integer default 0")
     private int green;
+
+    @Column(columnDefinition = "integer default 0")
     private int blue;
+
+    public ColorSet() {
+        this(0,0,0);
+    }
 
     public ColorSet(int r, int g, int b) {
         setRed(r);

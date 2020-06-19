@@ -1,6 +1,7 @@
 package archorganizer.model.document.state;
 
 import archorganizer.model.document.Document;
+import archorganizer.model.user.Architect;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -16,6 +17,8 @@ public class Archived {
 
     @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH})
     private Document document;
+
+    public Archived() {}
 
     public Archived(Document document) {
         this.document = document;

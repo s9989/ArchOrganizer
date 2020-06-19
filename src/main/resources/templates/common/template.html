@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+<head th:fragment="head">
+    <title>Archorganizer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;500&display=swap" rel="stylesheet">
+    <style type="text/css" th:fragment="style">
+
+        a, span, p, h1, h2, div {
+            font-family: 'Roboto', sans-serif;
+            font-weight: 300;
+            font-size: 16px;
+        }
+
+        h1 {
+            font-weight: 500;
+        }
+
+        h2 {
+            font-size: 24px;
+        }
+
+        html, body {
+            margin: 0;
+            padding: 0;
+            background-color: #F2F2F2;
+        }
+
+        h1 {
+            margin: 0;
+        }
+
+        a {
+            text-decoration: none;
+            color: #3671BF;
+        }
+
+        .wrapper {
+            border: solid 0px dodgerblue;
+            max-width: 1200px;
+            margin: 20px auto;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+        }
+
+        .header h1 {
+            font-size: 36px;
+        }
+
+        .header .panel {
+            text-align: right;
+            flex-grow: 20;
+        }
+
+        .header, .body, .footer {
+            padding: 20px;
+        }
+
+        .header, .body {
+            border-bottom: solid 3px #3671BF;
+        }
+
+        .footer {
+            font-size: 12px;
+            text-align: right;
+        }
+
+        ul {
+            margin: 0;
+            padding: 0;
+        }
+
+        li {
+            list-style: none
+        }
+
+        .elements li {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+
+        .projects li {
+            background-color: #3671BF;
+        }
+
+        .projects li:hover {
+            opacity: 0.8;
+        }
+
+        .elements li a {
+            padding: 10px 15px;
+            display: block;
+        }
+
+        .elements li a.main {
+            flex-grow: 10;
+        }
+
+        .elements li a.delete {
+            visibility: hidden;
+        }
+
+        .elements li:hover a.delete {
+            visibility: visible;
+        }
+
+        .projects li:not(.new) a {
+            color: white;
+        }
+
+        .elements li.new {
+            background-color: transparent;
+        }
+
+        .stages li {
+            border: solid 1px #3671BF;
+        }
+
+    </style>
+</head>
+<body>
+<div class="wrapper">
+    <div class="header" th:fragment="header">
+        <h1>ArchOrganizer</h1>
+        <div class="panel">
+            <span class="profile">
+                Jakub Kuryłowicz [Architekt]
+            </span>
+            <span class="logout">
+                <a href="#">Wyloguj</a>
+            </span>
+            <!-- <span class="login">
+                <a href="#">Zaloguj</a>
+            </span> -->
+        </div>
+    </div>
+    <div class="footer" th:fragment="footer">
+        s9989 - 2020 - archorganizer
+    </div>
+</div>
+</body>
+</html>

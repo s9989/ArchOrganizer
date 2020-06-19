@@ -15,6 +15,8 @@ public class Concept extends Stage {
 
     private String absorptivity;
 
+    public Concept() {}
+
     public Concept(@NotBlank Project project) {
         super(project);
     }
@@ -22,6 +24,21 @@ public class Concept extends Stage {
     public Concept(@NotBlank Project project, @NotBlank String absorptivity) {
         this(project);
         setAbsorptivity(absorptivity);
+    }
+
+    @Override
+    public String getType() {
+        return Stage.TYPE_CONCEPT;
+    }
+
+    @Override
+    public Long getId() {
+        return id;
+    }
+
+    @Override
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getAbsorptivity() {

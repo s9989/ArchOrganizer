@@ -19,6 +19,8 @@ public class Building extends Stage {
     )
     private List<String> arrangements = new ArrayList<>();;
 
+    public Building() {}
+
     public Building(Project project) {
         super(project);
     }
@@ -26,6 +28,21 @@ public class Building extends Stage {
     public Building(Project project, @NotBlank List<String> arrangements) {
         this(project);
         this.arrangements = arrangements;
+    }
+
+    @Override
+    public String getType() {
+        return Stage.TYPE_BUILDING;
+    }
+
+    @Override
+    public Long getId() {
+        return id;
+    }
+
+    @Override
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public List<String> getArrangements() {

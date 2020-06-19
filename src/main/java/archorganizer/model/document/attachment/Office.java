@@ -22,13 +22,21 @@ public class Office extends Document {
     @OneToOne(mappedBy = "office", cascade = {CascadeType.ALL})
     private Attachment attachment;
 
-    public Office(@NotBlank String instituteName, @NotBlank String referenceNumber) {
+    public Office() {}
+
+    public Office(@NotBlank Attachment attachment, @NotBlank String documentName) {
+        super(documentName);
+        this.attachment = attachment;
+    }
+
+    public Office(@NotBlank Attachment attachment, @NotBlank String documentName, @NotBlank String instituteName, @NotBlank String referenceNumber) {
+        this(attachment, documentName);
         setInstituteName(instituteName);
         setReferenceNumber(referenceNumber);
     }
 
-    public Office(@NotBlank String instituteName, @NotBlank String referenceNumber, @NotBlank LocalDate validationDate) {
-        this(instituteName, referenceNumber);
+    public Office(@NotBlank Attachment attachment, @NotBlank String documentName, @NotBlank String instituteName, @NotBlank String referenceNumber, @NotBlank LocalDate validationDate) {
+        this(attachment, documentName, instituteName, referenceNumber);
         setValidationDate(validationDate);
     }
 

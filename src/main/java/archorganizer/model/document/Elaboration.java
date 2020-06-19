@@ -14,6 +14,8 @@ public class Elaboration extends Document {
 
     private String content;
 
+    public Elaboration() {}
+
     public Long getId() {
         return id;
     }

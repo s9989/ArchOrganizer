@@ -3,7 +3,6 @@ package archorganizer.model.project;
 import archorganizer.model.document.attachment.Attachment;
 import archorganizer.model.relations.Management;
 import archorganizer.model.user.Architect;
-import archorganizer.model.user.User;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
@@ -18,6 +17,8 @@ public class Project {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    private String projectName;
+
     @OneToMany(mappedBy = "architect", cascade = {CascadeType.ALL}, orphanRemoval = true)
     public Set<Management> managements = new HashSet<>();
 
@@ -27,12 +28,30 @@ public class Project {
     @OneToMany(mappedBy = "project", cascade = {CascadeType.ALL})
     private Set<Stage> stages = new HashSet<>();
 
+    public Project() {}
+
+    public Project(String projectName) {
+        this.setProjectName(projectName);
+    }
+
     public Long getId() {
         return id;
     }
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getProjectName() {
+        return projectName;
+    }
+
+    public Set<Stage> getStages() {
+        return stages;
+    }
+
+    public void setProjectName(String projectName) {
+        this.projectName = projectName;
     }
 
     public Stage addConcept(String absorptivity) {
@@ -63,5 +82,37 @@ public class Project {
         Management management = new Management(architect, this);
         this.managements.add(management);
         architect.managements.add(management);
+    }
+
+    public void addAttachment(Attachment attachment) {
+        attachment.setProject(this);
+        this.attachments.add(attachment);
+    }
+
+    public Concept getConceptStage() throws Exception {
+        for (Stage stage : this.stages) {
+            if (stage instanceof Concept) {
+                return (Concept) stage;
+            }
+        }
+        throw new Exception("Project has no Concept stage");
+    }
+
+    public Building getBuildingStage() throws Exception {
+        for (Stage stage : this.stages) {
+            if (stage instanceof Building) {
+                return (Building) stage;
+            }
+        }
+        throw new Exception("Project has no Building stage");
+    }
+
+    public Execution getExecutionStage() throws Exception {
+        for (Stage stage : this.stages) {
+            if (stage instanceof Execution) {
+                return (Execution) stage;
+            }
+        }
+        throw new Exception("Project has no Execution stage");
     }
 }

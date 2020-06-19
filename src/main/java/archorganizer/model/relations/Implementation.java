@@ -17,13 +17,21 @@ public class Implementation {
 
     private LocalDate endDate;
 
-    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH})
+    @ManyToOne
     @JoinColumn(name = "expert_id", nullable = false)
     private Expert expert;
 
-    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH})
+    @ManyToOne
     @JoinColumn(name = "stage_id", nullable = false)
     private Stage stage;
+
+    public Implementation() {}
+
+    public Implementation(Expert expert, Stage stage) {
+        this.expert = expert;
+        this.stage = stage;
+        this.startDate = LocalDate.now();
+    }
 
     public Long getId() {
         return id;
