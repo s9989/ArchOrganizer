@@ -52,6 +52,10 @@ public class Invoice extends Document {
     @JoinColumn(name = "accountant_id")
     private Accountant accountant;
 
+    public String getDocumentType() {
+        return Document.DOCUMENT_TYPE_INVOICE;
+    }
+
     public Long getId() {
         return id;
     }

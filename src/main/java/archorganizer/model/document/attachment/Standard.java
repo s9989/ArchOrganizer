@@ -47,6 +47,10 @@ public class Standard extends Document {
         setColorSet(colorSet);
     }
 
+    public String getDocumentType() {
+        return Document.DOCUMENT_TYPE_STANDARD;
+    }
+
     public Long getId() {
         return id;
     }

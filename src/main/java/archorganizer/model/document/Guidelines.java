@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-public class Guidelines extends Document{
+public class Guidelines extends Document {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -22,6 +22,10 @@ public class Guidelines extends Document{
 
     public Guidelines(String documentName) {
         super(documentName);
+    }
+
+    public String getDocumentType() {
+        return Document.DOCUMENT_TYPE_GUIDELINES;
     }
 
     public Long getId() {

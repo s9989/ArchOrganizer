@@ -16,6 +16,10 @@ public class Elaboration extends Document {
 
     public Elaboration() {}
 
+    public String getDocumentType() {
+        return Document.DOCUMENT_TYPE_ELABORATION;
+    }
+
     public Long getId() {
         return id;
     }

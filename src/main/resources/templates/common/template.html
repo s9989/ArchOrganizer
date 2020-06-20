@@ -2,14 +2,19 @@
 <html>
 <head th:fragment="head">
     <title>Archorganizer</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;500&display=swap" rel="stylesheet">
-    <style type="text/css" th:fragment="style">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <style type="text/css">
 
-        a, span, p, h1, h2, div {
+        a, span, p, h1, h2, h3, h4, div, th, td {
             font-family: 'Roboto', sans-serif;
             font-weight: 300;
             font-size: 16px;
         }
+
+        h1, h2, h3, h4 {
+            margin: 0;
+        }
+
 
         h1 {
             font-weight: 500;
@@ -17,16 +22,26 @@
 
         h2 {
             font-size: 24px;
+            margin-bottom: 20px;
         }
+
+        h3 {
+            font-size: 18px;
+            border-bottom: solid 1px #3671BF;
+            padding-bottom: 5px;
+            margin-bottom: 10px;
+        }
+
+        h4 {
+            margin-bottom: 10px;
+            font-weight: 400;
+        }
+
 
         html, body {
             margin: 0;
             padding: 0;
             background-color: #F2F2F2;
-        }
-
-        h1 {
-            margin: 0;
         }
 
         a {
@@ -68,6 +83,11 @@
             text-align: right;
         }
 
+        .breadcrumbs, .breadcrumbs > a {
+            font-size: 14px;
+            margin-bottom: 5px;
+        }
+
         ul {
             margin: 0;
             padding: 0;
@@ -77,48 +97,161 @@
             list-style: none
         }
 
-        .elements li {
+        .details {
+            margin-bottom: 20px;
+        }
+
+        .detail .th, .detail .td, .detail .ta {
+            /*background-color: #E7E7E7;*/
+            border: solid 1px #9dc7ff;
+
+        }
+
+        .detail {
+            margin-bottom: 10px;
+        }
+
+        a.detail:hover .td, a.detail:hover .th {
+            background-color: #FFFFFF;
+        }
+
+        .detail, .item {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .td, .th, .ta {
+            background-color: #F2F2F2;
+            padding: 5px 10px;
+            flex-grow: 90;
+        }
+
+        .th {
+            margin-right: 10px;
+            flex-grow: 2;
+            width: 175px;
+        }
+
+        .ta {
+            margin-left: 10px;
+            flex-grow: 2;
+            text-align: center;
+        }
+
+        .element {
             display: flex;
             justify-content: space-between;
             margin-bottom: 10px;
         }
 
-        .projects li {
+        .projects .element {
             background-color: #3671BF;
         }
 
-        .projects li:hover {
+        .projects .element:hover {
             opacity: 0.8;
         }
-
-        .elements li a {
-            padding: 10px 15px;
-            display: block;
-        }
-
-        .elements li a.main {
-            flex-grow: 10;
-        }
-
-        .elements li a.delete {
-            visibility: hidden;
-        }
-
-        .elements li:hover a.delete {
-            visibility: visible;
-        }
-
-        .projects li:not(.new) a {
+        .projects .element a {
             color: white;
         }
 
-        .elements li.new {
+        .element a {
+            padding: 10px 15px;
+            display: block;
+        }
+        .element a.main {
+            flex-grow: 10;
+        }
+
+        .element a.delete {
+            visibility: hidden;
+        }
+
+        .element:hover a.delete {
+            visibility: visible;
+        }
+
+        .element.action {
             background-color: transparent;
         }
 
-        .stages li {
+        .action {
+            text-align: right;
+        }
+
+        .stages .element {
+            background-color: #F2F2F2;
             border: solid 1px #3671BF;
         }
+
+        .outer {
+            background-color: #E7E7E7;
+        }
+
+        .section {
+            margin-bottom: 20px;
+            padding: 10px 20px 20px;
+        }
+
+        .items, .other {
+            margin-bottom: 30px;
+        }
+
+        .item {
+            margin-bottom: 10px;
+        }
+
+        .documents {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .document {
+            max-width: 120px;
+            border: solid 1px #BBB;
+            margin: 0 20px 0 0;
+            background-color: #F2F2F2;
+        }
+
+        .document a {
+            display: block;
+            padding: 10px;
+            font-size: 14px;
+        }
+
+        .document .caption {
+            padding: 10px 10px 0;
+        }
+
+        .caption.small {
+            font-size: 12px;
+        }
+
+        .subjects {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .subject {
+            width: 47%;
+        }
+
+        table {
+            border-spacing: 0;
+            border: solid 1px #9dc7ff;
+            border-width: 1px 0 0 1px;
+        }
+
+        th {
+            background-color: #E7E7E7;
+        }
+
+        th, td {
+            padding: 10px;
+            border: solid 1px #9dc7ff;
+            border-width: 0 1px 1px 0;
+        }
+
 
     </style>
 </head>

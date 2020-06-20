@@ -40,6 +40,10 @@ public class Office extends Document {
         setValidationDate(validationDate);
     }
 
+    public String getDocumentType() {
+        return Document.DOCUMENT_TYPE_OFFICE;
+    }
+
     public Long getId() {
         return id;
     }

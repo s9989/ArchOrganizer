@@ -65,4 +65,8 @@ public class Investor {
     public void setContact(String contact) {
         this.contact = contact;
     }
+
+    public String getFullName() {
+        return this.user.getFullName();
+    }
 }

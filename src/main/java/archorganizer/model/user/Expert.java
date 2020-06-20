@@ -1,5 +1,6 @@
 package archorganizer.model.user;
 
+import archorganizer.model.project.Stage;
 import archorganizer.model.relations.Implementation;
 
 import javax.persistence.*;
@@ -72,5 +73,9 @@ public class Expert {
 
     public void setSpecialisation(String specialisation) {
         this.specialisation = specialisation;
+    }
+
+    public String getFullName() {
+        return this.user.getFullName();
     }
 }

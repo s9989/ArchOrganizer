@@ -119,4 +119,8 @@ public class User {
     public void setPassword(String password) {
         this.password = password;
     }
+
+    public String getFullName() {
+        return this.firstName + " " + this.lastName;
+    }
 }

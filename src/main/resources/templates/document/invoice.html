@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head th:replace="common/template :: head">
+</head>
+<body>
+<div class="wrapper">
+    <div class="header" th:replace="common/template :: header">
+    </div>
+    <div class="body">
+        <div class="breadcrumbs"><a href="show.html" th:href="@{'/project/show?id=' + ${document.stage.project.id}}" th:text="${document.stage.project.projectName}">projectName</a> &raquo; <a href="stage.html" th:href="@{'/stage/show?id=' + ${document.stage.id}}" th:text="${document.stage.type}">stageName</a></div>
+        <h2 th:text="${document.documentName}">documentName</h2>
+        <div class="generated">
+            <h3>Informacje</h3>
+            <div class="details">
+                <div class="detail">
+                    <div class="th">Data wystawienia</div>
+                    <div class="td">14.06.2020</div>
+                </div>
+                <div class="detail">
+                    <div class="th">Miejsce wystawienia</div>
+                    <div class="td">Warszawa</div>
+                </div>
+                <div class="detail">
+                    <div class="th">Termin płatności</div>
+                    <div class="td">14.06.2020</div>
+                </div>
+
+            </div>
+            <h3>Podmioty</h3>
+            <div class="subjects">
+                <div class="subject details">
+                    <h4>Nabywca</h4>
+                    <div class="detail">
+                        <div class="th">NIP</div>
+                        <div class="td">9898984477</div>
+                    </div>
+                    <div class="detail">
+                        <div class="th">Nazwa</div>
+                        <div class="td">Krzysztof Szary</div>
+                    </div>
+                    <div class="detail">
+                        <div class="th">Imię i nazwisko</div>
+                        <div class="td">Krzysztof Szary</div>
+                    </div>
+                    <div class="detail">
+                        <div class="th">Adres</div>
+                        <div class="td">Krzysztof Szary</div>
+                    </div>
+                </div>
+                <div class="subject details">
+                    <h4>Sprzedawca</h4>
+                    <div class="detail">
+                        <div class="th">NIP</div>
+                        <div class="td">9898984477</div>
+                    </div>
+                    <div class="detail">
+                        <div class="th">Nazwa</div>
+                        <div class="td">Krzysztof Szary</div>
+                    </div>
+                    <div class="detail">
+                        <div class="th">Imię i nazwisko</div>
+                        <div class="td">Krzysztof Szary</div>
+                    </div>
+                    <div class="detail">
+                        <div class="th">Adres</div>
+                        <div class="td">Krzysztof Szary</div>
+                    </div>
+                </div>
+
+            </div>
+            <h3>Pozycje</h3>
+            <div class="positions">
+                <table>
+                    <thead>
+                    <tr>
+                        <th class="center-align">L.p.</th>
+                        <th>Nazwa towaru lub usługi</th>
+                        <th class="center-align">PKWiU</th>
+                        <th class="center-align">J m</th>
+                        <th class="center-align">Ilość</th>
+                        <th class="center-align">Cena netto</th>
+                        <th class="center-align">Stawka VAT</th>
+                        <th class="center-align">Wartość netto</th>
+                        <th class="center-align">Wartość VAT</th>
+                        <th class="center-align">Wartość brutto</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td class="center-align">1</td>
+                        <td>Opracowanie analiz funkcjonalnych etapu budowlanego</td>
+                        <td class="center-align">62.01</td>
+                        <td class="center-align">usługa</td>
+                        <td class="center-align">20</td>
+                        <td class="center-align">100.00</td>
+                        <td class="center-align">23%</td>
+                        <td class="center-align">2000.00</td>
+                        <td class="center-align">460.00</td>
+                        <td class="center-align">2460.00</td>
+                    </tr>
+                    </tbody>
+                    <tfoot>
+                    <tr>
+                        <td colspan="6" class="blank"></td>
+                        <td>Razem</td>
+                        <td class="center-align">2000.00</td>
+                        <td class="center-align">460.00</td>
+                        <td class="center-align">2460.00</td>
+                    </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="footer" th:replace="common/template :: footer">
+    </div>
+</div>
+</body>
+</html>

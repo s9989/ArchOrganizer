@@ -1,7 +1,9 @@
 package archorganizer;
 
 import archorganizer.model.complex.ColorSet;
+import archorganizer.model.complex.Subject;
 import archorganizer.model.document.Guidelines;
+import archorganizer.model.document.Invoice;
 import archorganizer.model.document.attachment.Attachment;
 import archorganizer.model.document.attachment.Office;
 import archorganizer.model.project.Project;
@@ -13,6 +15,7 @@ import archorganizer.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -141,6 +144,22 @@ public class DataInitializer {
         concept3.addExpert(users.get("psw").getExpert()); // electricity
         concept3.addExpert(users.get("lpa").getExpert()); // construction
         concept3.addExpert(users.get("pad").getExpert()); // fire
+
+        Subject subject = new Subject();
+        subject.setNIP("797987456");
+        subject.setName("Firma X");
+        subject.setFirstName("Jan");
+        subject.setLastName("Kowalski");
+        subject.setAddress("Panamska 1, 00-001 Warszawa");
+
+        Invoice invoice = new Invoice();
+        invoice.setIssueDate(LocalDate.now());
+        invoice.setPaymentDate(LocalDate.now());
+        invoice.setDocumentName("FV 2020/06/02");
+        invoice.setIssuer(subject);
+        invoice.setReceiver(subject);
+
+        concept3.addInvoice(invoice);
 
         projects.put("retail", retail);
         projectRepository.save(retail);

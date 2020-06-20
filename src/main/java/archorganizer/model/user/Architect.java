@@ -61,4 +61,8 @@ public class Architect {
         this.managements.add(management);
         project.managements.add(management);
     }
+
+    public String getFullName() {
+        return this.user.getFullName();
+    }
 }

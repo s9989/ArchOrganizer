@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+    <head th:replace="common/template :: head">
+    </head>
+    <body>
+        <div class="wrapper">
+            <div class="header" th:replace="common/template :: header">
+            </div>
+            <div class="body">
+                <div class="breadcrumbs"><a href="show.html" th:href="@{'/project/show?id=' + ${stage.project.id}}" th:text="${stage.project.projectName}">projectName</a> &raquo; <a href="stage.html" th:href="@{'/stage/show?id=' + ${stage.id}}" th:text="${stage.type}">stageName</a></div>
+                <h2 th:text="${stage.type}">stageType</h2>
+                <h3>Dostępni projektanci</h3>
+                <div class="details" th:each="user: ${experts}">
+                    <a class="detail" th:href="@{/stage/expert/save(id=${stage.id},expert_id=${user.id})}">
+                        <div class="th" th:text="${user.expert.specialisation}">specialiaation</div>
+                        <div class="td" th:text="${user.expert.fullName}">expertFullName</div>
+                    </a>
+                </div>
+            <div class="footer" th:replace="common/template :: footer">
+            </div>
+        </div>
+    </body>
+</html>

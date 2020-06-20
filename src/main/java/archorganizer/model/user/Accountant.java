@@ -53,4 +53,8 @@ public class Accountant {
     public void setEntitlementNumber(String entitlementNumber) {
         this.entitlementNumber = entitlementNumber;
     }
+
+    public String getFullName() {
+        return this.user.getFullName();
+    }
 }

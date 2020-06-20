@@ -1,7 +1,9 @@
 package archorganizer.model.project;
 
 import archorganizer.model.document.Document;
+import archorganizer.model.document.Elaboration;
 import archorganizer.model.document.Guidelines;
+import archorganizer.model.document.Invoice;
 import archorganizer.model.relations.Implementation;
 import archorganizer.model.relations.Summary;
 import archorganizer.model.user.Expert;
@@ -91,11 +93,37 @@ abstract public class Stage {
         return budget;
     }
 
+    public Set<Expert> getExperts()
+    {
+        Set<Expert> experts = new HashSet<>();
+        for (Implementation implementation : implementations) {
+            experts.add(implementation.getExpert());
+        }
+        return experts;
+    }
+
     public void addExpert(Expert expert)
     {
+        for (Implementation implementation : implementations) {
+            if (implementation.getExpert().getId().equals(expert.getId())) {
+                return;
+            }
+        }
+
         Implementation implementation = new Implementation(expert, this);
         this.implementations.add(implementation);
         expert.implementations.add(implementation);
+    }
+
+    public Implementation getImplementation(Expert expert)
+    {
+        for (Implementation implementation : implementations) {
+            if (implementation.getExpert().getId() == expert.getId()) {
+                return implementation;
+            }
+        }
+
+        return null;
     }
 
     public void setBudget(double budget) {
@@ -106,4 +134,35 @@ abstract public class Stage {
         guidelines.setStage(this);
         this.documents.add(guidelines);
     }
+
+    public void addInvoice(Invoice invoice) {
+        invoice.setStage(this);
+        this.documents.add(invoice);
+    }
+
+    public Project getProject() {
+        return this.project;
+    }
+
+    public Set<Document> getOtherDocuments() {
+        Set<Document> results = new HashSet<Document>();
+        for (Document document : documents) {
+            if (!(document instanceof Invoice)) {
+                results.add(document);
+            }
+        }
+        return results;
+    }
+
+    public Set<Document> getInvoices() {
+        Set<Document> results = new HashSet<Document>();
+        for (Document document : documents) {
+            if (document instanceof Invoice) {
+                results.add(document);
+            }
+        }
+        return results;
+    }
+
+
 }

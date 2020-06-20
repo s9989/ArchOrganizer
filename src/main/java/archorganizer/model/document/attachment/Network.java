@@ -40,6 +40,10 @@ public class Network extends Document {
         setStatus(status);
     }
 
+    public String getDocumentType() {
+        return Document.DOCUMENT_TYPE_NETWORK;
+    }
+
     public Long getId() {
         return id;
     }

@@ -57,4 +57,11 @@ public class Implementation {
         this.endDate = endDate;
     }
 
+    public Expert getExpert() {
+        return expert;
+    }
+
+    public Stage getStage() {
+        return stage;
+    }
 }

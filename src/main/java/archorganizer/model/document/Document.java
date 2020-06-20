@@ -11,6 +11,13 @@ import java.time.LocalDate;
 @Entity
 abstract public class Document {
 
+    static final public String DOCUMENT_TYPE_INVOICE     = "Faktura";
+    static final public String DOCUMENT_TYPE_GUIDELINES  = "Wytyczne";
+    static final public String DOCUMENT_TYPE_ELABORATION = "Opracowanie";
+    static final public String DOCUMENT_TYPE_OFFICE      = "Pismo";
+    static final public String DOCUMENT_TYPE_NETWORK     = "Sieci";
+    static final public String DOCUMENT_TYPE_STANDARD    = "Standard";
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -44,6 +51,8 @@ abstract public class Document {
         this();
         this.documentName = documentName;
     }
+
+    abstract public String getDocumentType();
 
     public Long getId() {
         return id;
@@ -97,4 +106,7 @@ abstract public class Document {
         this.stage = stage;
     }
 
+    public Stage getStage() {
+        return stage;
+    }
 }
